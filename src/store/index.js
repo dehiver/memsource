@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import projects from "./modules/projects.js";
+import projects from "@/store/modules/projects.js";
 
 Vue.use(Vuex);
 
