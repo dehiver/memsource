@@ -1,8 +1,13 @@
 import projects_api from "@/api/modules/projects.js";
 
 export default {
+    namespaced: true,
+    
     state: {
-        projects: [],      
+        projects: [],
+
+        project_statuses: [ 'NEW, COMPLETED, DELIVERED', ],
+        project_languages: [ "cs", "en", "de", "fi", "zh", "ru", "hu", "ja", "ko", "la", ],
     },
 
     actions: {
