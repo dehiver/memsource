@@ -9,7 +9,9 @@ export default {
                 'Content-Type': 'application/json',
             },
         };
+
+        let axios_instance = axios.create(config);
         
-        return axios.create(config);
+        return axios_instance;
     },
 }

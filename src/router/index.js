@@ -12,7 +12,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.name + ' | ' + process.env.VUE_APP_NAME;
+  document.title = to.meta.title + ' | ' + process.env.VUE_APP_NAME;
 
   next();
 });

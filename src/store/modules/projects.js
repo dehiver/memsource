@@ -4,16 +4,21 @@ export default {
     namespaced: true,
     
     state: {
-        projects: [
-            { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016/10/15 13:43:27', 'gender': 'Male' },
-            { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016/12/15 06:00:53', 'gender': 'Male' },
-            { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016/04/26 06:26:28', 'gender': 'Female' },
-            { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016/04/10 10:28:46', 'gender': 'Male' },
-            { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016/12/06 14:38:38', 'gender': 'Female' }
+        projects: [ ],
+        available_project_statuses: [ 'NEW', 'COMPLETED', 'DELIVERED', ],
+        available_project_languages: [ 
+            { key: "cs", flag: 'cz' },
+            { key: "en", flag: 'gb' },
+            { key: "de", flag: 'de' },
+            { key: "fi", flag: 'fi' },
+            { key: "zh", flag: 'zh' },
+            { key: "ru", flag: 'ru' },
+            { key: "hu", flag: 'hu' },
+            { key: "ja", flag: 'ja' },
+            { key: "ko", flag: 'kr' },
+            { key: "la", flag: 'la' },
         ],
-
-        project_statuses: [ 'NEW, COMPLETED, DELIVERED', ],
-        project_languages: [ "cs", "en", "de", "fi", "zh", "ru", "hu", "ja", "ko", "la", ],
+        loading: [ ],
     },
 
     actions: {
@@ -21,7 +26,7 @@ export default {
             return new Promise((resolve, reject) => {
                 projects_api.getProjects()
                     .then(api_response => {
-                        commit('addProjects', api_response);
+                        commit('addProjects', api_response.data);
                         resolve();
                     })
                     .catch(error => {
@@ -42,6 +47,22 @@ export default {
                     });
             });
         },
+
+        patchProject({ commit, }, { projectId, patchParams }) {
+            return new Promise((resolve, reject) => {
+                commit('setLoading', { projectId: projectId, loadingStatus: true, });
+                projects_api.patchProject({ projectId: projectId, patchParams: patchParams })
+                    .then(api_response => {
+                        resolve();
+                    })
+                    .catch(error => {
+                        reject();
+                    })
+                    .finally(() => {
+                        commit('setLoading', { projectId: projectId, loadingStatus: false, });
+                    });
+            });
+        },
     },
 
     getters: {
@@ -52,15 +73,31 @@ export default {
         getProjectById: (state) => (projectId) => {
             return state.projects.find(project => { return project.id === projectId });
         },
+
+        getAvailableStatuses: (state) => {
+            return state.available_project_statuses;
+        },
+
+        getAvailableLanguages: (state) => {
+            return state.available_project_languages;
+        },
+
+        isProjectLoading: (state) => (projectId) => {
+            return state.loading.some(loading_project_id => { return loading_project_id === projectId });
+        },
     },
 
     mutations: {
         addProjects(state, api_response) {
-            if(Array.isArray(api_response)) {
-                state.projects = [ ...state.projects, ...api_response ];
+            state.projects = [ ...api_response._embedded.projects ];
+        },
+
+        setLoading(state, { projectId, loadingStatus, }) {
+            if(loadingStatus === true) {
+                state.loading.push(projectId);
             }
             else {
-
+                state.loading.splice(state.loading.findIndex(loading_project_id => { return loading_project_id === projectId }), 1);
             }
         },
     },

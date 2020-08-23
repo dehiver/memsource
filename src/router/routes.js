@@ -10,11 +10,12 @@ export default [
         component: Home,
         meta: {
             title: 'Home',
+            sub_title: 'Projects overview',
         },
     },
     {
         path: '/project',
-        name: 'project-detail',
+        name: 'project',
         component: Project,
         meta: {
             title: 'Project Detail',

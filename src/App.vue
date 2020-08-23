@@ -3,22 +3,24 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
-            Hero title
-          </h1>
-          <h2 class="subtitle">
-            Hero subtitle
-          </h2>
+          <h1 class="title">{{ routeMeta.title }}</h1>
+          <h2 class="subtitle">{{ routeMeta.sub_title }}</h2>
         </div>
       </div>
     </section >
 
-    <transition name="fade-in-out">
+    <transition name="fade" mode="out-in">
       <router-view />
     </transition>
-
-    <footer>
-
-    </footer>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    routeMeta() {
+      return this.$route.meta;
+    },
+  },
+}
+</script>

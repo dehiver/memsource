@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
+  <section class="container">
     <ProjectForm :projectId="projectId" />
-  </div>
+  </section>
 </template>
 
 <script>
