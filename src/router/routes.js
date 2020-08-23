@@ -10,7 +10,6 @@ export default [
         component: Home,
         meta: {
             title: 'Home',
-            sub_title: 'Projects overview',
         },
     },
     {
@@ -18,7 +17,7 @@ export default [
         name: 'project',
         component: Project,
         meta: {
-            title: 'Project Detail',
+            title: 'Project',
         },
     }
 ]

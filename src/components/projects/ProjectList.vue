@@ -25,7 +25,7 @@
                     </b-table-column>
 
                     <b-table-column field="status" label="Status" width="120" centered sortable searchable v-slot="props">
-                        <b-field :type="{ 'is-success': ['DELIVERED', 'COMPLETED'].includes(props.row.status) }">
+                        <b-field :type="{ 'is-success': props.row.status === 'DELIVERED', 'is-info': props.row.status === 'COMPLETED' }">
                             <b-select 
                                 size="is-small"
                                 placeholder="Select project status" 
@@ -52,7 +52,7 @@
                     </b-table-column>
 
                     <b-table-column field="targetLanguages" label="Target Languages" v-slot="props">
-                        <span class="tag mr-1" v-for="language in props.row.targetLanguages" :key="language">
+                        <span class="tag mr-2" v-for="language in props.row.targetLanguages" :key="language">
                             <span class="flag-icon mr-1" :class="[`flag-icon-${getLanguageFlag(language)}`]" ></span>
                             <span class="is-uppercase">{{ language }}</span>
                         </span>

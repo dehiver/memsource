@@ -4,10 +4,9 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">{{ routeMeta.title }}</h1>
-          <h2 class="subtitle">{{ routeMeta.sub_title }}</h2>
         </div>
       </div>
-    </section >
+    </section>
 
     <transition name="fade" mode="out-in">
       <router-view />
