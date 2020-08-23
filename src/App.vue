@@ -13,9 +13,9 @@
       </div>
     </section >
 
-    <section class="container">
-      <router-view/>
-    </section>
+    <transition name="fade-in-out">
+      <router-view />
+    </transition>
 
     <footer>
 

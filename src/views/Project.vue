@@ -1,5 +1,21 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <ProjectForm :projectId="projectId" />
   </div>
 </template>
+
+<script>
+import ProjectForm from "@/components/projects/ProjectForm.vue";
+
+export default {
+  components: {
+    ProjectForm,
+  },
+
+  computed: {
+    projectId() {
+      return this.$route.params.id;
+    },
+  },
+}
+</script>
