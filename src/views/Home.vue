@@ -1,6 +1,7 @@
 <template>
   <section class="container">
     <ProjectOverview />
+    <hr />
     <ProjectList />
   </section>
 </template>

@@ -17,7 +17,7 @@ export default [
         name: 'project',
         component: Project,
         meta: {
-            title: 'Project',
+            title: 'Project Form',
         },
     }
 ]

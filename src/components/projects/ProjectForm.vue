@@ -1,6 +1,7 @@
 <template>
     <div class="columns">
         <div class="column is-6">
+            <h2 v-if="!(project instanceof Object)">New Project</h2>
             <form @submit.prevent="handleFormSubmit">
                 <b-field label="Name">
                     <b-input 
