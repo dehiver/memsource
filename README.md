@@ -1,29 +1,23 @@
-# test
+# Memsource Assignment
 
 ## Project setup
+
+### Requirements
+- Node.js
+- Yarn (`npm install -g yarn`)
+- @vue/cli (`yarn global add @vue/cli`)
+
+
 ```
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+yarn run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+yarn run build
 ```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

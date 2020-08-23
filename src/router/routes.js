@@ -13,7 +13,7 @@ export default [
         },
     },
     {
-        path: '/project',
+        path: '/project/:id',
         name: 'project',
         component: Project,
         meta: {

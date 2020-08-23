@@ -13,7 +13,6 @@
                     :loading="loading"
                     default-sort="dateDue"
                     sort-icon="arrow-up"
-                    :default-sort-direction="'desc'"
                     :toggleDetails="true"
                 >
                     <b-table-column field="id" label="Id" width="40" sortable numeric v-slot="props">

@@ -7,6 +7,10 @@ export default {
         return api.get('projects');
     },
 
+    postProject(projectParams) {
+        return api.post('projects', projectParams);
+    },
+
     patchProject({ projectId, patchParams }) {
         return api.patch('projects/' + projectId, patchParams );
     },

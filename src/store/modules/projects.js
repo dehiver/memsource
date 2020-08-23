@@ -7,16 +7,16 @@ export default {
         projects: [ ],
         available_project_statuses: [ 'NEW', 'COMPLETED', 'DELIVERED', ],
         available_project_languages: [ 
-            { key: "cs", flag: 'cz' },
-            { key: "en", flag: 'gb' },
-            { key: "de", flag: 'de' },
-            { key: "fi", flag: 'fi' },
-            { key: "zh", flag: 'cn' },
-            { key: "ru", flag: 'ru' },
-            { key: "hu", flag: 'hu' },
-            { key: "ja", flag: 'jp' },
-            { key: "ko", flag: 'kr' },
-            { key: "la", flag: 'la' },
+            { key: "cs", flag: 'cz', name: 'Čeština', },
+            { key: "en", flag: 'gb', name: 'Angličtina', },
+            { key: "de", flag: 'de', name: 'Němčina', },
+            { key: "fi", flag: 'fi', name: 'Finština', },
+            { key: "zh", flag: 'cn', name: 'Čínština', },
+            { key: "ru", flag: 'ru', name: 'Ruština', },
+            { key: "hu", flag: 'hu', name: 'Maďarština', },
+            { key: "ja", flag: 'jp', name: 'Japonština', },
+            { key: "ko", flag: 'kr', name: 'Korejština', },
+            { key: "la", flag: 'la', name: 'Laoština', },
         ],
         loading: [ ],
     },
@@ -45,6 +45,18 @@ export default {
                     .catch(error => {
                         reject();
                     });
+            });
+        },
+
+        createNewProject({ commit }, projectParams) {
+            return new Promise((resolve, reject) => {
+                projects_api.postProject(projectParams)
+                    .then(() => {
+                        resolve();
+                    })
+                    .catch(error => {
+                        reject();
+                    })
             });
         },
 
@@ -79,7 +91,7 @@ export default {
         },
 
         getAvailableLanguages: (state) => {
-            return state.available_project_languages;
+            return state.available_project_languages.sort((a, b) => { return a.name > b.name ? 1 : -1 });
         },
 
         isProjectLoading: (state) => (projectId) => {
