@@ -7,6 +7,10 @@ export default {
         return api.get('projects');
     },
 
+    getProjectById(projectId) {
+        return api.get('projects/' + projectId);
+    },
+
     postProject(projectParams) {
         return api.post('projects', projectParams);
     },

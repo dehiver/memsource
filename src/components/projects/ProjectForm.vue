@@ -67,6 +67,13 @@ export default {
         }
     },
 
+    props: {
+        project: {
+            type: Object,
+            required: false,
+        },
+    },
+
     computed: {
         ...mapGetters({
             availableLanguages: 'projects/getAvailableLanguages',
@@ -81,6 +88,14 @@ export default {
         },
     },
 
+    created() {
+        if(this.project instanceof Object) {
+            this.name = this.project.name;
+            this.source_language = this.project.sourceLanguage;
+            this.target_languages = this.project.targetLanguages;
+        }
+    },
+
     methods: {
         ...mapActions({
             patchProject: 'projects/patchProject',
@@ -88,9 +103,10 @@ export default {
         }),
 
         handleFormSubmit() {
-            if(this.projectId) {
+            if(this.project instanceof Object) {
                 this.patchProject({
-                    ...this.formData,
+                    projectId: this.project.id,
+                    patchParams: this.formData,
                 })
                     .then(() => {
                         this.$router.push({ name: 'home' });

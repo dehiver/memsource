@@ -39,7 +39,7 @@ export default {
             return new Promise((resolve, reject) => {
                 projects_api.getProjectById(projectId)
                     .then(api_response => {
-                        commit('addProjects', api_response);
+                        commit('addProject', api_response.data);
                         resolve();
                     })
                     .catch(error => {
@@ -102,6 +102,10 @@ export default {
     mutations: {
         addProjects(state, api_response) {
             state.projects = [ ...api_response._embedded.projects ];
+        },
+
+        addProject(state, api_response) {
+            state.projects = [ api_response ];
         },
 
         setLoading(state, { projectId, loadingStatus, }) {
